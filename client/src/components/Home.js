@@ -9,11 +9,9 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             isLogin: (localStorageGet(constants.LOCAL_STORAGE_KEY.USER_DETAILS))?true:false
         }
-
     }
 
     render() {
