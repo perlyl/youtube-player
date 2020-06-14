@@ -11,9 +11,12 @@ export const MakeGetRequest = (url, params, next) => {
     xhr.onerror = function () {
         next(xhr);
     };
-    let searchParams = new URLSearchParams();
-    Object.keys(params).forEach((key) => searchParams.set(key, params[key]));
-    const urlWithParam = url + "?" + searchParams;
+    let urlWithParam = url
+    if(params){
+        let searchParams = new URLSearchParams();
+        Object.keys(params).forEach((key) => searchParams.set(key, params[key]));
+        urlWithParam = url + "?" + searchParams;
+    }
     xhr.open('GET', urlWithParam)
     xhr.send()
 }
@@ -65,10 +68,11 @@ export const ValidateForm = (errors) => {
 
 
 export const addActionLog = (action,value) => {
-    const userId = JSON.parse(localStorageGet(constants.LOCAL_STORAGE_KEY.USER_DETAILS)).userId
-    MakePostRequest(constants.SERVER_URL + 'addActionLog', {userId:userId, action:action, value:value}, (err, res) => {
+    const currentUser = JSON.parse(localStorageGet(constants.LOCAL_STORAGE_KEY.USER_DETAILS))
+    MakePostRequest(constants.SERVER_URL + 'addActionLog', {userId:currentUser, fullName:currentUser.fullName, action:action, value:value}, (err, res) => {
         if (err) {
             HandleServerError()
         }
     })
 }
+
