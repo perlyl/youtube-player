@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import Home from './components/Home';
-import Dashboard from './components/Dashboard';
+import YouTubePlayer from './components/YouTubePlayer';
 import SignIn from './components/SignIn';
-import SignUp  from './components/SignUp';
+import SignUp from './components/SignUp';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import AuthRoute from './components/AuthRoute'
 import Stats from './components/Stats';
+import './style.scss';
+
 class App extends Component {
 
   render() {
@@ -18,7 +20,7 @@ class App extends Component {
           <PublicRoute component={SignIn} path="/signin" exact />
           <PublicRoute component={SignUp} path="/signup" exact />
           <AuthRoute component={Stats} path="/stats" exact />
-          <PrivateRoute component={Dashboard} path="/dashboard" exact />
+          <PrivateRoute component={YouTubePlayer} path="/youtube-player" exact />
         </Switch>
       </BrowserRouter>
     );

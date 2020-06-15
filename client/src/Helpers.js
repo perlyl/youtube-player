@@ -1,18 +1,17 @@
-import * as constants from './Constants';
 export const MakeGetRequest = (url, params, next) => {
     var xhr = new XMLHttpRequest()
     xhr.onload = function () {
         if (xhr.status != 200) {
             return next(xhr)
         }
-        
+
         next(null, xhr.response);
     };
     xhr.onerror = function () {
         next(xhr);
     };
     let urlWithParam = url
-    if(params){
+    if (params) {
         let searchParams = new URLSearchParams();
         Object.keys(params).forEach((key) => searchParams.set(key, params[key]));
         urlWithParam = url + "?" + searchParams;
@@ -37,22 +36,16 @@ export const MakePostRequest = (url, payload, next) => {
     xhr.send(JSON.stringify(payload));
 }
 
-export const localStorageSet = (key, value) => {
+export const LocalStorageSet = (key, value) => {
     localStorage.setItem(key, value);
 }
 
-export const localStorageRemove = (key) => {
+export const LocalStorageRemove = (key) => {
     localStorage.removeItem(key);
 }
 
-export const localStorageGet = (key) => {
+export const LocalStorageGet = (key) => {
     return localStorage.getItem(key)
-    // if (localStorage.getItem(key)) {
-    //     return true
-    //     //JSON.parse(localStorage.getItem(key))
-    // }
-
-    // return false;
 }
 export const HandleServerError = () => {
     alert("The server encountered an internal error or misconfiguration and was enable to complete your request.")
@@ -66,13 +59,15 @@ export const ValidateForm = (errors) => {
     return valid;
 }
 
+export const GetDuration = (timeStart, timeEnd = new Date()) => {
+    var seconds = Math.floor((timeEnd - (timeStart)) / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
 
-export const addActionLog = (action,value) => {
-    const currentUser = JSON.parse(localStorageGet(constants.LOCAL_STORAGE_KEY.USER_DETAILS))
-    MakePostRequest(constants.SERVER_URL + 'addActionLog', {userId:currentUser, fullName:currentUser.fullName, action:action, value:value}, (err, res) => {
-        if (err) {
-            HandleServerError()
-        }
-    })
+    hours = hours - (days * 24);
+    minutes = minutes - (days * 24 * 60) - (hours * 60);
+    seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+    return hours + ":" + minutes + ":" + seconds
 }
 

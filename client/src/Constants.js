@@ -4,6 +4,6 @@ export const LOCAL_STORAGE_KEY = {
 }
 export const API_KEY = "AIzaSyAx5aUhrbszmTIhtk-X4CiBbgzukGpb-wc"
 export const ACTION_TYPE = {
-    SEARCH:'search',
-    WATCH:'watch'
+    SEARCH:'Search',
+    WATCH:'Watch'
 }

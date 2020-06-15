@@ -1,0 +1,106 @@
+.home{
+  .no-user{
+    text-align: center;
+    h1{
+      color: red;
+    }
+  }
+}
+.search-bar{
+  text-align: center;
+  margin: 25px;
+  input{
+    margin: 20px;
+    text-align: center;
+    width:50%;
+    height: 35px;
+  }
+  button{
+    height: 40px;
+    margin-left: 10px; 
+    cursor: pointer
+  }
+}
+.login{
+  text-align: center;
+}
+.register{
+  text-align: center;
+  .error{
+    position: fixed;
+    color:#db2269;
+    font-size: 0.625em;
+    display: relative;
+    }
+}
+.stats{
+  h1{
+    text-align: center;
+  }
+  .filter{
+    margin-bottom: 30px;
+    select{
+      margin-right:25px;
+      margin-left:10px
+    }
+  }
+  table{
+    width:100%;
+    text-align: center;
+  }
+}
+
+.video-detail{
+  margin-top: 16px;
+  iframe{
+    width: 80%; 
+    height: 300px
+  }
+  .title{
+    font-weight: bold;
+  }
+}
+
+
+.video-list{
+  list-style-type: none;
+  margin-right: 70px;
+  width:50%;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.list-group-item{
+  cursor: pointer;
+  margin: 15px;
+}
+
+.list-group-item:hover{
+  background-color: #eee;
+}
+
+.video-list-item{
+  display: flex;
+  .video-details{
+    margin-left: 10px;
+    .desc{
+      font-size: 13px;
+    }
+  }
+  
+}
+
+.youtube-player{
+  .stats-btn{
+    float: left;
+  }
+  .log-out{
+    float: right;
+    .user-name{
+      margin:5px
+    }
+  }
+  .videos-area{
+    display: flex;
+  }
+}

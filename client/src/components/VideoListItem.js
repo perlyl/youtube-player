@@ -7,13 +7,13 @@ const VideoListItem = (props) => {
 
     return (
     <li onClick={() => onUserSelected(video)} className="list-group-item">
-        <div className="video-list media" style={{display:"flex"}}>
-            <div className="media-left">
-                <img className="media-object" src={imageUrl} />
+        <div className="video-list-item">
+            <div>
+                <img src={imageUrl} />
             </div>
-            <div className="media-body">
-                <div className="media-heading">{video.snippet.title}</div>
-                <span style={{fontSize:"13px"}}>{video.snippet.description}</span>
+            <div className="video-details">
+                <div>{video.snippet.title}</div>
+                <span className="desc">{video.snippet.description}</span>
             </div>
         </div>
     </li>

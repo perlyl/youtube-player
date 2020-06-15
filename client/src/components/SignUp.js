@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { localStorageSet, MakePostRequest, HandleServerError, ValidateForm } from '../Helpers';
+import { LocalStorageSet, MakePostRequest, HandleServerError, ValidateForm } from '../Helpers';
 import * as constants from '../Constants';
-import '../style.css';
-
+import { Link } from 'react-router-dom';
 
 class SignUp extends Component {
     constructor(props) {
@@ -51,8 +50,8 @@ class SignUp extends Component {
                 return
             }
             console.log("res",res)
-            localStorageSet(constants.LOCAL_STORAGE_KEY.USER_DETAILS, JSON.stringify(res));
-            this.props.history.push('/dashboard');
+            LocalStorageSet(constants.LOCAL_STORAGE_KEY.USER_DETAILS, JSON.stringify(res));
+            this.props.history.push('/youtube-player');
         })
     }
     render() {
@@ -95,6 +94,8 @@ class SignUp extends Component {
                     <br />
                     <button type='submit'>Register</button>
                 </form>
+                <br/><br/><br/>
+                <Link to="/signin">Exist user?</Link>
             </div>
         );
     }

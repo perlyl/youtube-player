@@ -12,7 +12,7 @@ const VideoList = (props) => {
     });
 
     return (
-        <ul className="col-md-4 list-group" style={{listStyleType:"none",marginRight: "70px",width: "50%",overflowY:"auto", maxHeight:"400px"}}>
+        <ul className="video-list">
             {videoItems}
         </ul>
     );

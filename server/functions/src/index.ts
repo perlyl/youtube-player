@@ -51,8 +51,8 @@ export const addActionLog = functions.https.onRequest((request, response) => {
     let actionDetails = request.body
     actionDetails["date"] = new Date()
     db.collection("actions").add(actionDetails)
-      .then(() => {
-        response.status(200).send({})
+      .then((res:any) => {
+        response.status(200).send({actionId:res.id})
       })
       .catch((err: any) => {
         response.status(500).send({ message: err });
@@ -62,12 +62,12 @@ export const addActionLog = functions.https.onRequest((request, response) => {
 
 export const getActionsLog = functions.https.onRequest((request, response) => {
   cors(request, response, () => {
-    // const queryParams = request.query.userId
-    // let query = db.collection("actions");
-    // queryParams.conditions.forEach((q:any) => {
-    //   query = query.where(q.key, q.operator, q.value)
-    // });
-    db.collection("actions").get()
+    const conditions = request.body.conditions
+    let query = db.collection("actions");
+    conditions.forEach((q:any) => {
+      query = query.where(q.key, q.operator, q.value)
+    });
+    query.get()
       .then((actionsRes:any) => {
         let actions:any[] = [];
         actionsRes.forEach((doc: any) => {
@@ -95,6 +95,17 @@ export const getUsers = functions.https.onRequest((request, response) => {
           users.push(user)
         })
         response.status(200).send(users)
+      })
+      .catch((err: any) => {
+        response.status(500).send({ message: err });
+      })
+  })
+});
+export const updateActionLog = functions.https.onRequest((request, response) => {
+  cors(request, response, () => {
+    db.collection("actions").doc(request.body.actionId).set(request.body.fields, { merge: true })
+      .then(() => {
+        response.status(200).send({})
       })
       .catch((err: any) => {
         response.status(500).send({ message: err });

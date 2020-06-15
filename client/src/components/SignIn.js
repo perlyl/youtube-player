@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { localStorageSet, MakeGetRequest, HandleServerError } from '../Helpers';
+import { LocalStorageSet, MakeGetRequest, HandleServerError } from '../Helpers';
 import { Link } from 'react-router-dom';
 import * as constants from '../Constants';
 
@@ -29,8 +29,8 @@ class SignIn extends Component {
                 return
             }
             else {
-                localStorageSet(constants.LOCAL_STORAGE_KEY.USER_DETAILS, res);
-                this.props.history.push('/dashboard');
+                LocalStorageSet(constants.LOCAL_STORAGE_KEY.USER_DETAILS, res);
+                this.props.history.push('/youtube-player');
             }
         })
     }
@@ -41,7 +41,7 @@ class SignIn extends Component {
     }
     render() {
         return (
-            <div style={{ textAlign: "center" }}>
+            <div className="login">
                 <h1>Login</h1>
                 <form onSubmit={this.mySubmitHandler}>
                     <p>Enter user name:</p>

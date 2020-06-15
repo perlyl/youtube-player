@@ -16,13 +16,13 @@ class SearchBar extends React.Component {
     }
     render() {
         return (
-            <div className="search-bar" style={{ textAlign: "center", margin: "25px" }}>
-                <input style={{ width: "50%", height: "35px" }}
+            <div className="search-bar">
+                <input
                     placeholder="Search on YouTube"
                     value={this.state.term}
                     onChange={this.onInputChange}
                 />
-                <button onClick={this.search} style={{ height: "40px", marginLeft: "10px", cursor: "pointer" }} type="button">Search</button>
+                <button onClick={this.search} type="button">Search</button>
             </div>
         );
     }
