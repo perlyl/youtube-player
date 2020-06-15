@@ -50,7 +50,7 @@ class SignUp extends Component {
                 return
             }
             console.log("res",res)
-            LocalStorageSet(constants.LOCAL_STORAGE_KEY.USER_DETAILS, JSON.stringify(res));
+            LocalStorageSet(constants.LOCAL_STORAGE_KEY.USER_DETAILS, res);
             this.props.history.push('/youtube-player');
         })
     }
